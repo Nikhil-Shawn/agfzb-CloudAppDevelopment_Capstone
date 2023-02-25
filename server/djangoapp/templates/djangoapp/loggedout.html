@@ -1,0 +1,53 @@
+{% extends "djangoapp/header.html" %}
+{% block content %}
+<style>
+body {
+  background-image: url("https://images.unsplash.com/photo-1557683316-973673baf926?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8Z3JhZGllbnQlMjBiYWNrZ3JvdW5kfGVufDB8fDB8fA%3D%3D&w=1000&q=80");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.log {
+    width: 500px;
+    height: auto;
+    vertical-align: center;
+    margin: 0 auto;
+    background-image: url("https://images.unsplash.com/photo-1557683316-973673baf926?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8Z3JhZGllbnQlMjBiYWNrZ3JvdW5kfGVufDB8fDB8fA%3D%3D&w=1000&q=80");
+
+}
+.container { 
+  margin-top: 50px;
+  height: 300px;
+  position: relative;
+  border: 3px solid #17a2b8; 
+}
+
+.center {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+h2, p {
+    font-size: 2rem;
+    margin-top: 30px;
+    color: #2290ff;
+    text-align: center;
+
+}
+</style>
+</head>
+<body>
+
+<h2>Logged out</h2>
+<p>You have been logged out</p>
+
+<div class="container">
+  <div class="center">
+    <p>Please redirect to <a href="{%url 'djangoapp:index' %}">Home page</a> or <a href="{%url 'djangoapp:login' %}">Login page</a> by clicking on them</p>
+  </div>
+</div>
+
+</body>
+{% endblock content %}

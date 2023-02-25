@@ -1,0 +1,37 @@
+{% extends "djangoapp/header.html" %}
+{% block content %}
+<style>
+    body {
+      background-image: url("https://images.unsplash.com/photo-1557683316-973673baf926?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8Z3JhZGllbnQlMjBiYWNrZ3JvdW5kfGVufDB8fDB8fA%3D%3D&w=1000&q=80");
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+    .container { 
+  margin-top: 100px!important;
+  height: 300px;
+  position: relative;
+  border: 3px solid #17a2b8; 
+}
+
+</style>
+<form action="{% url 'djangoapp:login' %}" method="post">
+    {% csrf_token %}
+    <div class="container"> <!--Style root div with .container class -->
+      <h1>Login</h1>
+      <div class="form-group"> <!--Style second div with .form-group class -->
+        <label for="username"><b>User Name</b></label>
+        <input id="username" class = "form-control" type="text" placeholder="Enter User Name: " name="username" required> <!--Style input with .form-control class -->
+        <label for="psw"><b>Password</b></label>
+        <input id="psw" class = "form-control" type="password"  placeholder="Enter Password: " name="psw" required> <!--Style input with .form-control class -->
+      </div>
+      {% if message %}
+        <div class="alert alert-warning"> <!--Style the message paragraph with .alert and .alert-warning class -->
+          {{ message }}
+        </div>
+      {% endif %}
+      <button class="btn btn-primary" type="submit">Login</button> <!--Style button with .btn and .btn-primary class -->
+    </div>
+  </form>
+
+
+  {% endblock %}
