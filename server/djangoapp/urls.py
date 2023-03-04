@@ -9,6 +9,7 @@ urlpatterns = [
     # view refers to the view function
     # name the URL
 
+   
     # path for about view
     path(route='about/', view=views.about, name='about'),
 
@@ -29,7 +30,9 @@ urlpatterns = [
     path(route='', view=views.get_dealerships, name='index'),
 
     # path for dealer reviews view
+    path(route="dealer/<int:dealer_id>/", view=views.get_dealer_details, name="dealer_details"),
 
     # path for add a review view
+     path(route='review/<int:dealer_id>/', view=views.add_review, name='add_review')
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
