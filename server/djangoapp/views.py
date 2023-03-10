@@ -10,6 +10,8 @@ from datetime import datetime
 import logging
 import json
 from .restapis import *
+from .models import CarDealer, CarMake, CarModel, DealerReview
+from .restapis import get_dealers_from_cf, get_dealer_reviews_from_cf,post_request, get_dealer_by_id
 
 # Get an instance of a logger
 logger = logging.getLogger(__name__)
@@ -108,7 +110,7 @@ def get_dealerships(request):
 def get_dealer_details(request, dealer_id,dealer_name):
     if request.method == "GET":
         context = {}        
-        url = "https://us-south.functions.appdomain.cloud/api/v1/web/69d2c467-206c-4606-b559-fa18d561d7e4/dealership-package/get-review?id=1"
+        url = "https://us-south.functions.appdomain.cloud/api/v1/web/69d2c467-206c-4606-b559-fa18d561d7e4/dealership-package/get-review?dealerId="+str(dealer_id)
         # Get dealers from the URL
         reviews = get_dealer_reviews_from_cf(url)
        # Get dealers from the URL
@@ -145,7 +147,7 @@ def add_review(request, dealer_id, dealer_name):
             'purchase_date': datetime.strptime(request.POST['purchasedate'], "%m/%d/%Y").isoformat()
     }
 }
-        url= "https://us-south.functions.appdomain.cloud/api/v1/web/08c5912a-d3c3-4838-9ab3-5be482070298/dealership-package/post-review"
+        url= "https://us-south.functions.cloud.ibm.com/api/v1/namespaces/69d2c467-206c-4606-b559-fa18d561d7e4/actions/dealership-package/post-review"
         post_request(url=url, json_payload=json_payload)
         
         return redirect("djangoapp:dealer_details", dealer_id=dealer_id, dealer_name=dealer_name)

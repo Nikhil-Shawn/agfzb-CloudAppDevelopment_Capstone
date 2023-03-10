@@ -24,7 +24,40 @@
 <h3>
     Welcome to Best Cars dealership, home to the best cars in North America. We sell domestic and imported cars at reasonable prices.
     </h3>
-    <p>Best cars in the whole world, Get your car right now!!!</p>
+</div>
+  <table class="table table-hover table-striped" data-filter-control="true">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Dealer Name</th>
+        <th scope="col">City</th>
+        <th scope="col">Address</th>
+        <th scope="col">Zip</th>
+        <th scope="col" data-field="state" data-filter-control="select">
+          State
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for dealer in dealers %}
+      <tr>
+        <td>{{dealer.id}}</td>
+        <td>
+          <a
+            href="{% url 'djangoapp:dealer_details' dealer.id dealer.full_name %}"
+            >{{dealer.full_name}}</a
+          >
+        </td>
+        <td>{{dealer.city}}</td>
+        <td>{{dealer.address}}</td>
+        <td>{{dealer.zip}}</td>
+        <td>{{dealer.city}}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+
 </div>
 
     <!-- Footer -->
@@ -32,9 +65,6 @@
         <!-- Section: Social media -->
         <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
           <!-- Left -->
-          <div class="me-5 d-none d-lg-block">
-            <span>Get connected with us on social networks:</span>
-          </div>
           <!-- Left -->
       
           <!-- Right -->
@@ -137,7 +167,7 @@
               <!-- Grid column -->
             </div>
             <!-- Grid row -->
-          </div>
+          
         </section>
         <!-- Section: Links  -->
       
@@ -149,3 +179,8 @@
         <!-- Copyright -->
       </footer>
       {% endblock %}
+      <script>
+        $(function () {
+          $(".table").bootstrapTable();
+        });
+      </script>
