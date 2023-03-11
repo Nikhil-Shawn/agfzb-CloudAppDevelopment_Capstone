@@ -12,39 +12,50 @@
 </head>
     <body>
     <!--Add review form here -->
-    <h1>
-        Add a review about {{ dealer }} Car Dealership
-    </h1>
-    <form action="{% url 'djangoapp:add_review' dealerid dealer%}" method="post">
-        <div class="form-group">
-            <label for="content">Enter the review content:</label>
-            <textarea class="form-control" id="content" name="content" rows="2" required></textarea>
-        </div>
-        <div class="form-check">
-            <input class="form-check-input" type="checkbox" name="purchase" id="purchasecheck" />
-            <label for="purchasecheck" class="">Has purchased the car from {{ dealer }} Car Dealership?</label>
-            <label for="purchasecheck" class="text-muted">(select purchased car information below if checked)</label>
-        </div>
-        <div>
-            <label for="car">Select your car (model-make-year):</label>
-            <select name="car" id="car" class="form-select" required>
-                {% for car in cars %}
-                    <option selected value={{car.id}}>{{car.car_make.name}}--{{car.name}}--{{ car.year|date:"Y" }}</option>
-                {% endfor %}
-           </select>
-        </div>
-        <div class="form-group col-xs-2">
-            <label for="purchasedate">Select your Purchase Date:</label>
-            <input class="date-own form-control" type="text" style="width:15%" name="purchasedate" id="purchasedate">
-        </div>
-        {% csrf_token %}
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
-    </body>
+    <h1>Add a Review about this Dealership</h1>
+        <form class="my-3" action="{% url 'djangoapp:add_review' dealerid dealer %}" method="post">
+            <div class='container' style="width: 600px;">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="review">Enter the review content:</label><br/>
+                    <textarea name="review" class="form-control" rows="2" required></textarea><br/>
+                    
+                    <label for="purchase">Have you purchased a car from this Dealership?</label><br/>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" value="True" name="purchase">
+                        <label class="form-check-label" for="purchase">
+                            True
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" value="False" name="purchase" checked>
+                        <label class="form-check-label" for="purchase">
+                            False
+                        </label>
+                    </div><br/>
 
-    <script type="text/javascript">
-        $('input.date-own').datepicker({
-           format: 'mm/dd/yyyy'
-         });
-   </script>
+                    <label class="text-warning">If purhcased, please give us more information:</label><br/>
+                    <label for="car_make">Car Make</label>
+                    <input name="car_make" class="form-control" type="text" placeholder="Mercedes-Benz">
+                    <label for="car_model">Car Model</label>
+                    <input name="car_model" class="form-control" type="text" placeholder="GLC 43">
+                    <label for="car_year">Model Year</label>
+                    <input name="car_year" class="form-control" type="number" min="1990" max="2021" step="1" placeholder="2021">
+                   
+                    <br/>
+                    <div class="form-group" data-provide="datepicker">
+                        <label for="purchase_date">Select your purchase date:</label>
+                        <input class="date-own" type="text" name="purchase_date" id="purchase_date">
+                                <script type="text/javascript">
+                                    $('.date-own').datepicker({
+                                        format: 'mm/dd/yyyy'
+                                    });
+                                </script>  
+                    </div>
+                    <br/>
+
+                    <button class="btn btn-primary" type="submit">Submit Review</button>
+                </div>
+            </div>
+        </form>
 </html>

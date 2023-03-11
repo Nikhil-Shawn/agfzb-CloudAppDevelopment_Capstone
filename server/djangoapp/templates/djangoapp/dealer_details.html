@@ -32,9 +32,6 @@
           <ul class="nav navbar-nav navbar-right">
             {% if user.is_authenticated %}
             <li>
-            <a class="btn btn-primary" href="{% url 'djangoapp:add_review' dealerid dealer %}">Add Review</a>
-            </li>
-            <li>
                 <a class="btn btn-link" href="#">{{ user.first_name }}({{ user.username }})</a>
                 <a class="btn btn-link" href="{% url 'djangoapp:logout' %}">Logout</a>
             </li>
@@ -82,6 +79,23 @@
         </div>
         {% endfor %}
       </div>
+      <div class="card ">
+        <div class="card-header">
+               <h5 class="card-title text-center pt-1">Write Your Own Review!</h5>
+       </div>
+       <div class="card-body text-center">
+           <p class="card-text">Want to review this dealership?</p>
+           <p class="card-text">Click the button below!</p>
+       </div>
+       <div class="card-footer text-center" style="min-height: 74px;">
+           {% if user.is_authenticated %}
+               <a class="btn btn-warning btn-lg" type="submit" href="{% url 'djangoapp:add_review' dealerid dealer %}">Write a Review!</a>
+           {% else %}
+               <p class="btn btn-success btn-lg" disabled>Login to write a review!</p>
+           {% endif %}
+       </div>
+        
+   </div>
     </div>
    
   </body>
