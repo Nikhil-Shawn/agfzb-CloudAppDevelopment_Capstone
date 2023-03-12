@@ -1,3 +1,5 @@
+{% extends "djangoapp/header.html" %}
+{% block content %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,11 +10,17 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.js"></script>
-    
+    <style>
+        body {
+          background-image: url("https://images.unsplash.com/photo-1557683316-973673baf926?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8Z3JhZGllbnQlMjBiYWNrZ3JvdW5kfGVufDB8fDB8fA%3D%3D&w=1000&q=80");
+          background-repeat: no-repeat;
+          background-size: cover;
+        }
+        </style>
 </head>
     <body>
     <!--Add review form here -->
-    <h1>Add a Review about this Dealership</h1>
+    <h1 style="text-align: center;">Add a Review about this Dealership</h1>
         <form class="my-3" action="{% url 'djangoapp:add_review' dealerid dealer %}" method="post">
             <div class='container' style="width: 600px;">
                 {% csrf_token %}
@@ -59,3 +67,4 @@
             </div>
         </form>
 </html>
+{% endblock %}
