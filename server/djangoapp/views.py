@@ -141,9 +141,6 @@ def add_review(request, dealer_id, dealer_name):
         "purchase": False,
         "another": "field",
          'purchase': bool(request.POST.get('purchase',False)),
-            'car_make': car.car_make.name,
-            'car_model': car.name,
-            'car_year': car.year.strftime("%Y"),
             'purchase_date': datetime.strptime(request.POST['purchasedate'], "%m/%d/%Y").isoformat()
     }
 }

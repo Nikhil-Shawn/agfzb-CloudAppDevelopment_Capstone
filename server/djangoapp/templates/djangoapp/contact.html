@@ -1,6 +1,16 @@
 {% extends "djangoapp/header.html" %}
 {% block content %}
 <!--Section: Contact v.2-->
+<style>
+    body {
+      background-image: url("https://images.unsplash.com/photo-1557683316-973673baf926?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8Z3JhZGllbnQlMjBiYWNrZ3JvdW5kfGVufDB8fDB8fA%3D%3D&w=1000&q=80");
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+    .container-fluid {
+        font-weight: bold;
+    }
+    </style>
 <section class="container-fluid w-75">
 
     <!--Section heading-->
@@ -68,7 +78,7 @@
             </form>
 
             <div class="text-center text-md-left">
-                <a class="btn btn-primary" onclick="document.getElementById('contact-form').submit();">Send</a>
+                <a class="btn btn-primary" style="margin-bottom:50px;" onclick="document.getElementById('contact-form').submit();">Send</a>
             </div>
             <div class="status"></div>
         </div>
